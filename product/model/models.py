@@ -6,7 +6,7 @@ from django.db import models
 class Product(models.Model):
     """ CLASE PRODUCTO """
     name = models.CharField(max_length=255)
-    description = models.TextField()
+    description = models.TextField(blank=True, null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     stock = models.IntegerField()
     is_active = models.BooleanField(default=True)
