@@ -26,10 +26,6 @@ class ProductDetailView(APIView):
         serializer = ProductSerializer(product)
         return Response(serializer.data)
 
-    def post(self, request, pk):
-        product = ProductService.toggle_active(pk)
-        return Response(ProductSerializer(product).data)
-
     def put(self, request, pk):
         product = ProductService.get_product(pk)
 
@@ -64,3 +60,11 @@ class ProductDetailView(APIView):
         updated_product = ProductService.update_product(pk,data)
 
         return Response(ProductSerializer(updated_product).data)
+
+class ProductRestoreView(APIView):
+    def post(self, request, pk):
+        product = ProductService.get_product(pk)
+        product.is_active = True
+        product.save()
+        return Response(ProductSerializer(product).data)
+

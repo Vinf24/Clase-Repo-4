@@ -176,3 +176,19 @@ function updateProduct() {
             bootstrap.Modal.getInstance(document.getElementById("editModal")).hide();
         });
 }
+
+function restoreProduct(id) {
+    fetch(API_URL + id + "/restore/", {
+        method: "POST"
+    })
+        .then(response => response.json())
+        .then(() => loadProducts());
+}
+
+function deactivateProduct(id) {
+    fetch(API_URL + id + "/deactivate/", {
+        method: "POST"
+    })
+        .then(response => response.json())
+        .then(() => loadProducts());
+}
