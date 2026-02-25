@@ -7,6 +7,8 @@ WORKDIR /app
 
 RUN apt-get update && apt-get install -y \
     curl \
+    sqlite3 \
+    git \
     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt /app/
